@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class TicTacToe {
 	static Scanner sc = new Scanner(System.in);
 	static String board[];
+	static String chance;
 
 	// Implimentation Of Board
 	static void printBoard() {
@@ -15,10 +16,25 @@ public class TicTacToe {
 		System.out.println(board[6] + " | " + board[7] + " | " + board[8]);
 	}
 
-	public static void main(String[] args) {
-		// Create board with size [10]
-		board = new String[9];
-
+	// ChosePlayer For Play
+	public String choosePlayer() {
+		int random = (int) (Math.floor(Math.random() * 10) % 2);
+		switch (random) {
+		case 0:
+			System.out.println("its palyer turn");
+			chance = "X";
+			break;
+		case 1:
+			System.out.println("it's Computer turn");
+			chance = "O";
+			break;
+		}
+		return chance;
 	}
 
+	public static void main(String[] args) {
+		System.out.println("Well come In TicTacToe Game... ");
+		// Create board with size [10]
+		board = new String[9];
+	}
 }
