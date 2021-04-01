@@ -33,12 +33,12 @@ public class TicTacToe {
 		}
 		return turn;
 	}
-	
-	//Choose player and computer..
+
+	// Choose player and computer..
 	String chooseplayer() {
 		int random = (int) (Math.floor(Math.random() * 10) % 2);
-		int HEAD=1;
-		int TAIL=0;
+		int HEAD = 1;
+		int TAIL = 0;
 		switch (random) {
 		case 1:
 			System.out.println("its palyer turn");
@@ -104,37 +104,50 @@ public class TicTacToe {
 		System.out.println(turn + "'s turn; enter a slot number to place " + turn + " in:");
 		return null;
 	}
-	//Game Started Here. IS this player turn or computer turn.
-		static void startGame() {
-			turn = new TicTacToe().choosesymbol();
-			String t1 = turn;
-			populateEmptyBoard();
-			System.out.println("Welcome to Tic Tac Toe game");
-			printBoard();
-			System.out.println();
-			System.out.println("now it is " + turn + " to make a move");
-			System.out.println("enter your input in the slot of your choice");
-			String winner = null;
-			while (winner == null) {
-				int input;
-				// play for players user
-				System.out.println("its player turn");
-				{
-					input = sc.nextInt();
-					if (!(input > 0 && input <= 9)) {
-						System.out.println("Invalid input; re-enter slot number:");
-						continue;
-					}
-					}
+
+	// Game Started Here. IS this player turn or computer turn.
+	static void startGame() {
+		turn = new TicTacToe().choosesymbol();
+		String t1 = turn;
+		populateEmptyBoard();
+		System.out.println("Welcome to Tic Tac Toe game");
+		printBoard();
+		System.out.println();
+		System.out.println("now it is " + turn + " to make a move");
+		System.out.println("enter your input in the slot of your choice");
+		String winner = null;
+		while (winner == null) {
+			int input;
+			// play for players user
+			System.out.println("its player turn");
+			{
+				input = sc.nextInt();
+				if (!(input > 0 && input <= 9)) {
+					System.out.println("Invalid input; re-enter slot number:");
+					continue;
 				}
+
+				if (board[input - 1].equals(String.valueOf(input))) {
+					board[input - 1] = turn;
+					if (turn.equals("x")) {
+						turn = "o";
+					} else {
+						turn = "x";
+					}
+					printBoard();
+					winner = new TicTacToe().checkWinner();
+					System.out.println(winner);
+					printBoard();
+				}
+				System.out.println("Congratulations! " + winner + "'s have won! Thanks for playing.");
 			}
-
-
+		}
+	}
 
 	public static void main(String[] args) {
 		board = new String[9];
 		// Calling Method for execute a inside code.
 		populateEmptyBoard();
-		
+		startGame();
 	}
 }
