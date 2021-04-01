@@ -1,14 +1,16 @@
 package tictactoe;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
+//Class For TicTacToeGame
 public class TicTacToe {
 	static Scanner sc = new Scanner(System.in);
 	static String board[];
-	static String chance;
+	static String turn;
 
-	// Implimentation Of Board
-	static void showBoard() {
+	// printing the board design.
+	static void printBoard() {
 		System.out.println("" + board[0] + " | " + board[1] + " | " + board[2]);
 		System.out.println("----" + "----" + "--" + "");
 		System.out.println(board[3] + " | " + board[4] + " | " + board[5]);
@@ -16,23 +18,31 @@ public class TicTacToe {
 		System.out.println(board[6] + " | " + board[7] + " | " + board[8]);
 	}
 
-	// ChosePlayer For Play
-	public String choosePlayer() {
+//Choose Symbols for player and computer between "X" and "O".
+	String choosesymbol() {
 		int random = (int) (Math.floor(Math.random() * 10) % 2);
 		switch (random) {
 		case 0:
-			System.out.println("its palyer turn");
-			chance = "X";
+			System.out.println("its palyer1 turn");
+			turn = "x";
 			break;
 		case 1:
-			System.out.println("it's Computer turn");
-			chance = "O";
+			System.out.println("it's player2 turn");
+			turn = "o";
 			break;
 		}
-		return chance;
+		return turn;
 	}
-	String showBoard() {
 
+	// giving the status of board
+	static void populateEmptyBoard() {
+		for (int a = 0; a < 9; a++) {
+			board[a] = String.valueOf(a + 1);
+		}
+	}
+
+//Playing a game and check who is winner of game.
+	String checkWinner() {
 		for (int a = 0; a < 8; a++) {
 			String line = null;
 			switch (a) {
@@ -61,16 +71,28 @@ public class TicTacToe {
 				line = board[2] + board[4] + board[6];
 				break;
 			}
-			if (line.equals("xxx")) {
-				return "x";
-			} else if (line.equals("ooo")) {
-				return "o";
+			if (line.equals("XXX")) {
+				return "X";
+			} else if (line.equals("OOO")) {
+				return "O";
 			}
 		}
+		// loop for checking draw values
+		for (int a = 0; a < 9; a++) {
+			if (Arrays.asList(board).contains(String.valueOf(a + 1))) {
+				break;
+			} else if (a == 8) {
+				return "draw";
+			}
+		}
+		System.out.println(turn + "'s turn; enter a slot number to place " + turn + " in:");
+		return null;
 	}
+
 	public static void main(String[] args) {
-		System.out.println("Well come In TicTacToe Game... ");
-		// Create board with size [10]
 		board = new String[9];
+		// Calling Method for execute a inside code.
+		populateEmptyBoard();
+		
 	}
 }
