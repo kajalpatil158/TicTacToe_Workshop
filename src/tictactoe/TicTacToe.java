@@ -33,6 +33,22 @@ public class TicTacToe {
 		}
 		return turn;
 	}
+	
+	//Choose player and computer..
+	String chooseplayer() {
+		int random = (int) (Math.floor(Math.random() * 10) % 2);
+		int HEAD=1;
+		int TAIL=0;
+		switch (random) {
+		case 1:
+			System.out.println("its palyer turn");
+			break;
+		case 0:
+			System.out.println("it's Computer turn");
+			break;
+		}
+		return turn;
+	}
 
 	// giving the status of board
 	static void populateEmptyBoard() {
