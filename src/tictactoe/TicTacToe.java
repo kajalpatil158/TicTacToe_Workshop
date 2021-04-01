@@ -88,6 +88,32 @@ public class TicTacToe {
 		System.out.println(turn + "'s turn; enter a slot number to place " + turn + " in:");
 		return null;
 	}
+	//Game Started Here. IS this player turn or computer turn.
+		static void startGame() {
+			turn = new TicTacToe().choosesymbol();
+			String t1 = turn;
+			populateEmptyBoard();
+			System.out.println("Welcome to Tic Tac Toe game");
+			printBoard();
+			System.out.println();
+			System.out.println("now it is " + turn + " to make a move");
+			System.out.println("enter your input in the slot of your choice");
+			String winner = null;
+			while (winner == null) {
+				int input;
+				// play for players user
+				System.out.println("its player turn");
+				{
+					input = sc.nextInt();
+					if (!(input > 0 && input <= 9)) {
+						System.out.println("Invalid input; re-enter slot number:");
+						continue;
+					}
+					}
+				}
+			}
+
+
 
 	public static void main(String[] args) {
 		board = new String[9];
